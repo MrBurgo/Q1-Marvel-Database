@@ -1,0 +1,23 @@
+body {
+  background: url('../images/background.png') no-repeat;
+  background-size: 100%;
+}
+
+.logo {
+  color:white;
+  font-size: 32px;
+}
+
+.selected-nav {
+  background-color: red !important;
+  font-size: 28px;
+}
+
+.nav-item {
+  font-size: 28px;
+}
+
+.nav-item:hover {
+  background-color:grey;
+  transition: 0.5s;
+}
