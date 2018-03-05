@@ -46,6 +46,10 @@
   backface-visibility: hidden;
 }
 
+footer {
+  bottom: 0;
+}
+
 /* <---------------------------- END UNIVERSAL CSS ----------------------------> */
 
 /* <---------------------------- HOME PAGE CSS ----------------------------> */
@@ -123,6 +127,11 @@
 
 /* <---------------------------- CHARACTER PAGE CSS ----------------------------> */
 
+#character-input {
+  max-width: 400px;
+  margin-right: 3%;
+}
+
 .character-header {
   font-size: 38px;
   font-family: 'Bungee', cursive;
@@ -141,6 +150,19 @@
   font-size: 16px;
   font-family: 'Bungee', cursive;
   text-align: center;
+}
+
+.search-buttons {
+  margin-right: 5px;
+  font-family: 'Bungee', cursive;
+  font-size: 18px;
+}
+
+.modal-title {
+  text-align: left;
+  font-family: 'Bungee', cursive;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 /* <---------------------------- END CHARACTER PAGE CSS ----------------------------> */

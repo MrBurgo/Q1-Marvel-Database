@@ -3375,6 +3375,10 @@ nav ul a span.badge {
   margin: 0 auto;
 }
 
+.container-full {
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 601px) {
   .container {
     width: 85%;
@@ -3382,6 +3386,10 @@ nav ul a span.badge {
 
   .container-large {
     width: 85%;
+  }
+
+  .container-full {
+    width: 100%;
   }
 }
 
@@ -3392,6 +3400,10 @@ nav ul a span.badge {
 
   .container-large {
     width: 80%;
+  }
+
+  .container-full {
+    width: 100%;
   }
 }
 
