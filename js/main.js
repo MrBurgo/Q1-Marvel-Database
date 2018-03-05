@@ -14,9 +14,12 @@ function characterSearch(url) {
       var urls = input.data.results[i].urls;
       var comics = input.data.results[i].urls[urls.length-1].url;
       console.log('Image', image)
-      $('#character-append').append(`<div class="col s12 m4">
+      $('#character-append').append(`<div class="col s12 m4 l4">
       <div class="image-block border">
-      <img class="box-image" src="${image}">
+      <img class="box-image image-wrap" src="${image}">
+      <div class="character-name-box">
+      <p class="character-name">${name}</p>
+      </div>
       </div>
       </div>`)
     }

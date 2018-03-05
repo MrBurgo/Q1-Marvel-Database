@@ -31,6 +31,21 @@
   text-align:right;
 }
 
+.image-block {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.box-image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
 /* <---------------------------- END UNIVERSAL CSS ----------------------------> */
 
 /* <---------------------------- HOME PAGE CSS ----------------------------> */
@@ -70,21 +85,6 @@
   justify-content: center !important;
   align-items: center;
   text-align:center;
-}
-
-.image-block {
-  position: relative;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.box-image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
 }
 
 .middle {
@@ -128,8 +128,19 @@
   font-family: 'Bungee', cursive;
 }
 
-.image-small {
-  width: 10px;
+.image-wrap {
+  object-fit: cover;
+  height: 260px;
+}
+
+.character-name-box {
+  height: 50px;
+}
+
+.character-name {
+  font-size: 16px;
+  font-family: 'Bungee', cursive;
+  text-align: center;
 }
 
 /* <---------------------------- END CHARACTER PAGE CSS ----------------------------> */
