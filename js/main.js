@@ -1,3 +1,10 @@
+var favoriteChar;
+if (localStorage.getItem('favorites') === null) {
+  favoriteChar = {};
+} else {
+  favoriteChar = JSON.parse(localStorage.getItem('favorites'))
+}
+
 // APPEND DATA TO CHARACTER PAGE
 function characterAppend(i, image, detail, description, urls, comics, comicCount, name) {
   $('#character-append').append(`
@@ -9,7 +16,7 @@ function characterAppend(i, image, detail, description, urls, comics, comicCount
             <h3 class="box-title">${name}</h3>
             <button class="btn-large black box-button">INFO</button>
           </div>
-          <div class="character-name-box hide-on-med-and-up">
+          <div class="character-name-box hide-on-large-only">
             <p class="character-name">${name}</p>
           </div>
         </div>
@@ -34,19 +41,21 @@ function characterModalAppend(i, image, detail, description, urls, comics, comic
         </div>
       </div>
       <div class="modal-footer">
-        <a id="favorite-char${i}" class="modal-action waves-effect waves-green btn-flat favorite-char"></a>
+        <a id="favorite-char${i}" class="modal-action waves-effect waves-green btn-flat favorite-char" data-name="${name}"></a>
         <a href="${comics}" class="modal-action waves-effect waves-green btn-flat" target="_blank">View Comics</a>
         <a href="${urls[0].url}" class="modal-action waves-effect waves-green btn-flat" target="_blank">More Info</a>
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
       </div>
     </div>`)
-  // console.log(JSON.parse(localStorage.getItem('favorites'))[name]);
+}
+
+// SET FAVORITE OR UNFAVORITE BUTTON
+function setFavoriteButton(i, name) {
   if (JSON.parse(localStorage.getItem('favorites'))[name]){
     $(`#favorite-char${i}`).text('Unfavorite');
   } else {
     $(`#favorite-char${i}`).text('Favorite');
   }
-  // console.log(favoriteChar)
 }
 
 // RUN JSON CALL TO GET CHARACTER INFO FOR POPULATION
@@ -68,8 +77,23 @@ function characterSearch(url) {
       // CALL ABOVE DATA IN INVOKED FUNCTIONS TO APPEND DOM
       characterAppend(i, image, detail, description, urls, comics, comicCount, name);
       characterModalAppend(i, image, detail, description, urls, comics, comicCount, name);
+      setFavoriteButton(i, name)
     }
     $('.modal').modal();
+
+    // EVENT LISTENER FOR MODAL FAVORITE BUTTONS
+    $('.favorite-char').click((event) => {
+      const dataName = $(event.target).data('name');
+      if (favoriteChar[dataName] === true){ // IF NAME IS ALREADY TRUE IN LOCAL STORAGE, SET TO FALSE
+        favoriteChar[dataName] = false;
+        $(event.target).text('Favorite');
+      } else { // IF NAME IS ALREADY FALSE OR NON-EXISTANT IN LOCAL STORAGE, SET TO TRUE
+        favoriteChar[dataName] = true;
+        $(event.target).text('Unfavorite');
+        $('#fav-char-append').append(`<a class="favorite-link" data-name="${dataName}">${dataName}</a><hr>`)
+      }
+      localStorage.setItem('favorites', JSON.stringify(favoriteChar))
+    })
   })
 }
 
@@ -84,11 +108,11 @@ $(document).ready(() => {
   const ts = new Date().getTime();
   const hash = MD5(`${ts}84bcf66c5bf0fd312d7990752d5e7dfb89e72cc129892350621d77e7a6fc6d59409bf98b`).toString();
 
-  // GET/SET LOCAL STORAGE
+  // ADD FAVORITED CHARACTER TO FAVORITES SECTION
   const favCharObj = JSON.parse(localStorage.getItem('favorites'));
   for (var name in favCharObj){
     if (favCharObj[name] === true){
-      $('#fav-char-append').append(`<a class="favorite-link">${name}</a><hr>`)
+      $('#fav-char-append').append(`<a class="favorite-link" data-name="${name}">${name}</a><hr>`)
     }
   }
 
@@ -107,8 +131,6 @@ $(document).ready(() => {
     $('#character-append').empty();
     $('#character-input').val(null);
   })
-
-  // ADD FAVORITE CHARACTER ON FAVORITE BUTTON CLICK
 
 
 })

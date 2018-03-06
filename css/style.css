@@ -133,7 +133,7 @@ footer {
 
 .image-wrap {
   object-fit: cover;
-  height: 260px;
+  height: 300px;
 }
 
 .character-name-box {
@@ -177,7 +177,7 @@ footer {
 
 .favorite-character-header {
   font-family: 'Bungee', cursive;
-  font-size: 30px;
+  font-size: 24px;
   text-align:right;
 }
 
@@ -197,6 +197,7 @@ footer {
 
 #fav-char-append {
   padding: 10px 5px;
+  text-align:right;
 }
 
 /* <---------------------------- END CHARACTER PAGE CSS ----------------------------> */
