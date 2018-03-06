@@ -195,4 +195,8 @@ footer {
   backface-visibility: hidden;
 }
 
+#fav-char-append {
+  padding: 10px 5px;
+}
+
 /* <---------------------------- END CHARACTER PAGE CSS ----------------------------> */

@@ -19,7 +19,6 @@ function characterAppend(i, image, detail, description, urls, comics, comicCount
 
 // APPEND DATA TO CHARACTER PAGE MODALS
 function characterModalAppend(i, image, detail, description, urls, comics, comicCount, name) {
-  console.log(JSON.parse(localStorage.getItem('favorites'))[name]);
   $('#modal-append').append(`
     <div id="modal${i}" class="modal modal-fixed-footer valign-wrapper">
       <div class="modal-content row">
@@ -35,12 +34,19 @@ function characterModalAppend(i, image, detail, description, urls, comics, comic
         </div>
       </div>
       <div class="modal-footer">
-        <a id="favoriteChar" class="modal-action waves-effect waves-green btn-flat">Favorite</a>
+        <a id="favorite-char${i}" class="modal-action waves-effect waves-green btn-flat favorite-char"></a>
         <a href="${comics}" class="modal-action waves-effect waves-green btn-flat" target="_blank">View Comics</a>
         <a href="${urls[0].url}" class="modal-action waves-effect waves-green btn-flat" target="_blank">More Info</a>
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
       </div>
     </div>`)
+  // console.log(JSON.parse(localStorage.getItem('favorites'))[name]);
+  if (JSON.parse(localStorage.getItem('favorites'))[name]){
+    $(`#favorite-char${i}`).text('Unfavorite');
+  } else {
+    $(`#favorite-char${i}`).text('Favorite');
+  }
+  // console.log(favoriteChar)
 }
 
 // RUN JSON CALL TO GET CHARACTER INFO FOR POPULATION
@@ -101,5 +107,8 @@ $(document).ready(() => {
     $('#character-append').empty();
     $('#character-input').val(null);
   })
+
+  // ADD FAVORITE CHARACTER ON FAVORITE BUTTON CLICK
+
 
 })
