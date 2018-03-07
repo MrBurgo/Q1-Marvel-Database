@@ -9,7 +9,7 @@ A database to search for all things related to Marvel Comics.
 
 ## Usage
 
-Open http://marve-comics-database.surge.sh
+Open http://marvel-comics-database.surge.sh
 
 From here you can choose three pages from which you can search for the following:
 
