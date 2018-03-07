@@ -1,3 +1,4 @@
+// CHECK LOCAL STORAGE TO SET FAVORITECHAR VARIABLE IMMEDIATELY
 var favoriteChar;
 if (localStorage.getItem('favorites') === null) {
   favoriteChar = {};
