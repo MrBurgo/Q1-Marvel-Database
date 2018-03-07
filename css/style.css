@@ -201,3 +201,31 @@ footer {
 }
 
 /* <---------------------------- END CHARACTER PAGE CSS ----------------------------> */
+
+/* <---------------------------- COMIC PAGE CSS ----------------------------> */
+
+#comic-input {
+  max-width: 400px;
+  margin-right: 3%;
+}
+
+#fav-comic-append {
+  padding: 10px 5px;
+  text-align:right;
+}
+
+/* <---------------------------- END COMIC PAGE CSS ----------------------------> */
+
+/* <---------------------------- EVENT PAGE CSS ----------------------------> */
+
+#event-input {
+  max-width: 400px;
+  margin-right: 3%;
+}
+
+#fav-event-append {
+  padding: 10px 5px;
+  text-align:right;
+}
+
+/* <---------------------------- END EVENT PAGE CSS ----------------------------> */

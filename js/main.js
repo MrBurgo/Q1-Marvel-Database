@@ -2,6 +2,7 @@
 var favoriteChar;
 if (localStorage.getItem('favorites') === null) {
   favoriteChar = {};
+  localStorage.setItem('favorites', JSON.stringify(favoriteChar))
 } else {
   favoriteChar = JSON.parse(localStorage.getItem('favorites'))
 }
