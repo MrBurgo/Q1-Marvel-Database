@@ -70,7 +70,7 @@ function characterModalAppend(i, image, detail, description, urls, comics, comic
 }
 
 // APPEND DATA TO COMIC PAGE
-function comicAppend(i, title, image, issueNumber, detail, urls, series) {
+function comicAppend(i, title, image) {
   $('#comic-append').append(`
     <a href="#modal${i}" class="modal-trigger black-text">
       <div class="col s12 m6 l6">
@@ -186,7 +186,7 @@ function comicSearch(url) {
       }
 
       // CALL ABOVE DATA IN INVOKED FUNCTIONS TO APPEND DOM
-      comicAppend(i, title, image, issueNumber, detail, urls, series, description);
+      comicAppend(i, title, image);
       comicModalAppend(i, title, image, issueNumber, detail, urls, series, description);
       setComicFavoriteButton(i, title)
     }
@@ -227,6 +227,14 @@ $(document).ready(() => {
     }
   }
 
+  // ADD FAVORITED COMICS TO FAVORITES SECTION
+  const favComicObj = JSON.parse(localStorage.getItem('favoriteComics'));
+  for (var title in favComicObj){
+    if (favComicObj[title] === true){
+      $('#fav-comic-append').append(`<a class="favorite-link" data-name="${title}">${title}</a><hr>`)
+    }
+  }
+
   // GENERATE CHARACTERS ON CLICK
   $('#character-submit').on('click', () => {
     const query = $('#character-input').val();
@@ -246,7 +254,6 @@ $(document).ready(() => {
   $('#comic-submit').on('click', () => {
     const query = $('#comic-input').val();
     const url = `https://gateway.marvel.com:443/v1/public/comics?ts=${ts}&titleStartsWith=${query}&orderBy=title&limit=50&apikey=29892350621d77e7a6fc6d59409bf98b&hash=${hash}`
-    console.log(url);
     $('#comic-append').empty();
     $('#modal-append').empty();
     comicSearch(url);
