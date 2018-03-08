@@ -1,12 +1,15 @@
 var favoriteEvent;
 
 // CHECK LOCAL STORAGE TO SET FAVORITEEVENT VARIABLE IMMEDIATELY
-if (localStorage.getItem('favoriteEvents') === null) {
-  favoriteEvent = {};
-  localStorage.setItem('favoriteEvents', JSON.stringify(favoriteEvent))
-} else {
-  favoriteEvent = JSON.parse(localStorage.getItem('favoriteEvents'));
+function setEventLocalStorage() {
+  if (localStorage.getItem('favoriteEvents') === null) {
+    favoriteEvent = {};
+    localStorage.setItem('favoriteEvents', JSON.stringify(favoriteEvent))
+  } else {
+    favoriteEvent = JSON.parse(localStorage.getItem('favoriteEvents'));
+  }
 }
+setEventLocalStorage();
 
 // APPEND DATA TO EVENT PAGE
 function eventAppend(i, title, image) {

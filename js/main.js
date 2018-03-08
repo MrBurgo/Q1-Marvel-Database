@@ -1,11 +1,14 @@
 var favoriteChar;
 // CHECK LOCAL STORAGE TO SET FAVORITECHAR VARIABLE IMMEDIATELY
-if (localStorage.getItem('favoriteCharacters') === null) {
-  favoriteChar = {};
-  localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteChar))
-} else {
-  favoriteChar = JSON.parse(localStorage.getItem('favoriteCharacters'))
+function setCharLocalStorage() {
+  if (localStorage.getItem('favoriteCharacters') === null) {
+    favoriteChar = {};
+    localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteChar))
+  } else {
+    favoriteChar = JSON.parse(localStorage.getItem('favoriteCharacters'))
+  }
 }
+setCharLocalStorage()
 
 // APPEND DATA TO CHARACTER PAGE
 function characterAppend(i, image, detail, description, urls, comics, comicCount, name) {
@@ -116,7 +119,7 @@ $(document).ready(() => {
   const favCharObj = JSON.parse(localStorage.getItem('favoriteCharacters'));
   for (var name in favCharObj){
     if (favCharObj[name] === true){
-      $('#fav-char-append').append(`<a class="favorite-link" data-name="${name}">${name}</a><hr>`)
+      $('#fav-char-append').append(`<a class="favorite-link" data-name="${name}">${name}</a><i class="material-icons">clear</i><hr>`)
     }
   }
 

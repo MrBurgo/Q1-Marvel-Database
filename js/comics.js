@@ -1,12 +1,15 @@
 var favoriteComic;
 
 // CHECK LOCAL STORAGE TO SET FAVORITECOMIC VARIABLE IMMEDIATELY
-if (localStorage.getItem('favoriteComics') === null) {
-  favoriteComic = {};
-  localStorage.setItem('favoriteComics', JSON.stringify(favoriteComic))
-} else {
-  favoriteComic = JSON.parse(localStorage.getItem('favoriteComics'))
+function setComicLocalStorage() {
+  if (localStorage.getItem('favoriteComics') === null) {
+    favoriteComic = {};
+    localStorage.setItem('favoriteComics', JSON.stringify(favoriteComic))
+  } else {
+    favoriteComic = JSON.parse(localStorage.getItem('favoriteComics'))
+  }
 }
+setComicLocalStorage()
 
 // APPEND DATA TO COMIC PAGE
 function comicAppend(i, title, image) {
