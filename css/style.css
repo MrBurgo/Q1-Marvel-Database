@@ -44,6 +44,11 @@ footer {
   bottom: 0;
 }
 
+.input:focus {
+  border-bottom: 1px solid #000000 !important;
+  box-shadow: 0 1px 0 0 #000000 !important;
+}
+
 /* <---------------------------- END UNIVERSAL CSS ----------------------------> */
 
 /* <---------------------------- HOME PAGE CSS ----------------------------> */
@@ -213,6 +218,10 @@ footer {
 #fav-comic-append {
   padding: 10px 5px;
   text-align:right;
+}
+
+.hidden {
+  display: none;
 }
 
 /* <---------------------------- END COMIC PAGE CSS ----------------------------> */

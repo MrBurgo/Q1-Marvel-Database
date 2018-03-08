@@ -65,6 +65,7 @@ function setComicFavoriteButton(i, title) {
 function comicSearch(url) {
   var $xhr = $.getJSON(url);
   $xhr.done((input) => {
+    $('#spinner').attr('class', 'hidden center');
     for (var i = 0; i < input.data.results.length; i++) {
       const title = input.data.results[i].title;
       const image = `${input.data.results[i].thumbnail.path}.${input.data.results[i].thumbnail.extension}`;
@@ -120,13 +121,15 @@ $(document).ready(() => {
   }
 
   // EMPTY THE APPENDED DOM AND INPUT VALUE ON CLICK
-  $('#character-clear').on('click', () => {
+  $('#comic-clear').on('click', () => {
     $('#modal-append').empty();
-    $('#character-append').empty();
-    $('#character-input').val(null);
+    $('#comic-append').empty();
+    $('#spinner').empty();
+    $('#comic-input').val(null);
   })
 
   $('#comic-submit').on('click', () => {
+    $('#spinner').removeClass('hidden');
     const query = $('#comic-input').val();
     const url = `https://gateway.marvel.com:443/v1/public/comics?ts=${ts}&titleStartsWith=${query}&orderBy=title&limit=50&apikey=29892350621d77e7a6fc6d59409bf98b&hash=${hash}`
     $('#comic-append').empty();

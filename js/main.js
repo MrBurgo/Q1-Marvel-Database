@@ -1,19 +1,10 @@
 var favoriteChar;
-var favoriteEvent;
 // CHECK LOCAL STORAGE TO SET FAVORITECHAR VARIABLE IMMEDIATELY
 if (localStorage.getItem('favoriteCharacters') === null) {
   favoriteChar = {};
   localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteChar))
 } else {
   favoriteChar = JSON.parse(localStorage.getItem('favoriteCharacters'))
-}
-
-// CHECK LOCAL STORAGE TO SET FAVORITEEVENT VARIABLE IMMEDIATELY
-if (localStorage.getItem('favoriteEvents') === null) {
-  favoriteEvent = {};
-  localStorage.setItem('favoriteEvents', JSON.stringify(favoriteEvent))
-} else {
-  favoriteEvent = JSON.parse(localStorage.getItem('favoriteEvents'));
 }
 
 // APPEND DATA TO CHARACTER PAGE
@@ -74,6 +65,7 @@ function setCharFavoriteButton(i, name) {
 function characterSearch(url) {
   var $xhr = $.getJSON(url);
   $xhr.done((input) => {
+    $('#spinner').attr('class', 'hidden center');
     for (var i = 0; i < input.data.results.length; i++) {
       const name = input.data.results[i].name;
       const image = `${input.data.results[i].thumbnail.path}.${input.data.results[i].thumbnail.extension}`;
@@ -130,6 +122,7 @@ $(document).ready(() => {
 
   // GENERATE CHARACTERS ON CLICK
   $('#character-submit').on('click', () => {
+    $('#spinner').removeClass('hidden');
     const query = $('#character-input').val();
     const url = `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&nameStartsWith=${query}&orderBy=name&limit=50&apikey=29892350621d77e7a6fc6d59409bf98b&hash=${hash}`;
     $('#character-append').empty();
@@ -141,6 +134,7 @@ $(document).ready(() => {
   $('#character-clear').on('click', () => {
     $('#modal-append').empty();
     $('#character-append').empty();
+    $('#spinner').empty();
     $('#character-input').val(null);
   })
 
