@@ -213,6 +213,7 @@ footer {
 #comic-input {
   max-width: 400px;
   margin-right: 3%;
+  font-size: 16px;
 }
 
 #fav-comic-append {
@@ -231,6 +232,7 @@ footer {
 #event-input {
   max-width: 400px;
   margin-right: 3%;
+  font-size: 16px;
 }
 
 #fav-event-append {
