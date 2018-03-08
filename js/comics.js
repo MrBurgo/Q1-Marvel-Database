@@ -64,6 +64,16 @@ function setComicFavoriteButton(i, title) {
   }
 }
 
+// APPEND FAVORITES TO FAVE-APPEND SECTION
+function faveAppend() {
+  const favComicObj = JSON.parse(localStorage.getItem('favoriteComics'));
+  for (var title in favComicObj){
+    if (favComicObj[title] === true){
+      $('#fav-comic-append').append(`<a class="favorite-link" data-name="${title}">${title}</a><hr>`)
+    }
+  }
+}
+
 // RUN JSON CALL TO GET COMIC INFO FOR POPULATION
 function comicSearch(url) {
   var $xhr = $.getJSON(url);
@@ -97,9 +107,10 @@ function comicSearch(url) {
       } else { // IF NAME IS ALREADY FALSE OR NON-EXISTANT IN LOCAL STORAGE, SET TO TRUE
         favoriteComic[dataName] = true;
         $(event.target).text('Unfavorite');
-        $('#fav-comic-append').append(`<a class="favorite-link" data-name="${dataName}">${dataName}</a><hr>`)
       }
       localStorage.setItem('favoriteComics', JSON.stringify(favoriteComic))
+      $('#fav-comic-append').empty();
+      faveAppend()
     })
   })
 }
@@ -116,12 +127,7 @@ $(document).ready(() => {
   const hash = MD5(`${ts}84bcf66c5bf0fd312d7990752d5e7dfb89e72cc129892350621d77e7a6fc6d59409bf98b`).toString();
 
   // ADD FAVORITED COMICS TO FAVORITES SECTION
-  const favComicObj = JSON.parse(localStorage.getItem('favoriteComics'));
-  for (var title in favComicObj){
-    if (favComicObj[title] === true){
-      $('#fav-comic-append').append(`<a class="favorite-link" data-name="${title}">${title}</a><hr>`)
-    }
-  }
+  faveAppend()
 
   // EMPTY THE APPENDED DOM AND INPUT VALUE ON CLICK
   $('#comic-clear').on('click', () => {
