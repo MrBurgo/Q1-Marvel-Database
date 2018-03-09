@@ -64,6 +64,16 @@ function setCharFavoriteButton(i, name) {
   }
 }
 
+// APPEND FAVORITES TO FAVE-APPEND SECTION
+function faveAppend() {
+  const favCharObj = JSON.parse(localStorage.getItem('favoriteCharacters'));
+  for (var name in favCharObj){
+    if (favCharObj[name] === true){
+      $('#fav-char-append').append(`<a class="favorite-link" data-name="${name}">${name}</a><hr>`)
+    }
+  }
+}
+
 // RUN JSON CALL TO GET CHARACTER INFO FOR POPULATION
 function characterSearch(url) {
   var $xhr = $.getJSON(url);
@@ -97,9 +107,10 @@ function characterSearch(url) {
       } else { // IF NAME IS ALREADY FALSE OR NON-EXISTANT IN LOCAL STORAGE, SET TO TRUE
         favoriteChar[dataName] = true;
         $(event.target).text('Unfavorite');
-        $('#fav-char-append').append(`<a class="favorite-link" data-name="${dataName}">${dataName}</a><hr>`)
       }
       localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteChar))
+      $('#fav-char-append').empty();
+      faveAppend();
     })
   })
 }
@@ -116,12 +127,7 @@ $(document).ready(() => {
   const hash = MD5(`${ts}84bcf66c5bf0fd312d7990752d5e7dfb89e72cc129892350621d77e7a6fc6d59409bf98b`).toString();
 
   // ADD FAVORITED CHARACTER TO FAVORITES SECTION
-  const favCharObj = JSON.parse(localStorage.getItem('favoriteCharacters'));
-  for (var name in favCharObj){
-    if (favCharObj[name] === true){
-      $('#fav-char-append').append(`<a class="favorite-link" data-name="${name}">${name}</a><i class="material-icons">clear</i><hr>`)
-    }
-  }
+  faveAppend();
 
   // GENERATE CHARACTERS ON CLICK
   $('#character-submit').on('click', () => {
